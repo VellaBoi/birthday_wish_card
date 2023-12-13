@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birthday Wish Card</title>
+    <style>
+        body {
+            text-align: center;
+        }
+
+        form {
+            display: inline-block;
+            text-align: left;
+        }
+
+        #additionalText {
+            margin-top: 10px; /* Add some space between the password box and the additional text */
+            color: red; /* Set text color to red for emphasis */
+            animation: shake 0.5s ease-in-out; /* Apply shake animation */
+        }
+
+        @keyframes shake {
+            0%, 100% {
+                transform: translateX(0);
+            }
+            25%, 75% {
+                transform: translateX(-5px);
+            }
+            50% {
+                transform: translateX(5px);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Hi, Enter the password:</h2>
+    
+    <form>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+        <button type="button" onclick="checkPassword()">Submit</button>
+    </form>
+
+    <p id="additionalText"></p>
+
+    <script>
+        function checkPassword() {
+            var enteredPassword = document.getElementById("password").value;
+            var correctPassword = "120219";
+            var additionalText = document.getElementById("additionalText");
+
+            if (enteredPassword === correctPassword) {
+                // Redirect to a new page
+                window.location.href = "birthday_wish.html";
+            } else {
+                additionalText.textContent = "Lupa sudah ko.. hmm";
+                shakeText();
+                vibratePhone();
+            }
+        }
+
+        function shakeText() {
+            var textElement = document.getElementById("additionalText");
+            textElement.style.animation = "none";
+            void textElement.offsetWidth; // Trigger reflow
+            textElement.style.animation = null; // Reset animation
+        }
+
+        function vibratePhone() {
+            if (navigator.vibrate) {
+                navigator.vibrate([200, 100, 200]); // Vibrate for 200ms, pause for 100ms, vibrate for 200ms
+            }
+        }
+    </script>
+
+</body>
+</html>

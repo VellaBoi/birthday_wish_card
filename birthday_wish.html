@@ -1,0 +1,110 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birthday Wish</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+
+        #birthdayMessage {
+            overflow: hidden;
+            white-space: pre-wrap;
+            border-right: 1px solid #000;
+            margin: 0 auto;
+            font-size: 14px; /* Adjusted font size for mobile */
+            line-height: 1.5;
+            max-width: 80%; /* Adjusted max-width for better mobile display */
+            animation: typing 2s steps(100, end); /* Adjusted animation duration for normal speed */
+            text-align: center; /* Center text within the available width */
+        }
+
+        #buttons {
+            margin-top: 20px;
+        }
+
+        @keyframes typing {
+            from {
+                width: 0;
+            }
+            to {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="birthdayMessage">
+        <p id="paragraph"></p>
+    </div>
+
+    <div id="buttons">
+        <!-- Buttons will be added dynamically using JavaScript -->
+    </div>
+
+    <script>
+        var lines = [
+            "Happy Birthday Ciello Chrycelle Tan Yin Sia!!",
+            "Semoga dimudahkan rezeki and goodluck spm!!",
+            "Buat betul2 nanti yahh , kasih 10A walaupun subjek kita 7 hehe..",
+            "Ada satu video saya buat tapi kalau bulikan..",
+            "ko tingu saturang2.. bahaya ni ndabah"
+        ];
+
+        function animateTyping() {
+            var paragraph = document.getElementById("paragraph");
+            var fullText = lines.join(" ");
+            
+            paragraph.textContent = fullText;
+            paragraph.style.animation = "typing " + (fullText.length * 0.1) + "s";
+
+            setTimeout(displayButtons, 5000); // Wait for 5 seconds before displaying buttons
+        }
+
+        function displayButtons() {
+            var buttonsDiv = document.getElementById("buttons");
+
+            var yesButton = document.createElement("button");
+            yesButton.textContent = "Alone already bro (Yes)";
+            yesButton.addEventListener("click", function() {
+                showResult("Mantepss.. let's go");
+                navigateToVideoPage();
+            });
+
+            var noButton = document.createElement("button");
+            noButton.textContent = "Sabar ko (No)";
+            noButton.addEventListener("click", function() {
+                showResult("Take your time");
+            });
+
+            buttonsDiv.appendChild(yesButton);
+            buttonsDiv.appendChild(noButton);
+        }
+
+        function showResult(resultText) {
+            var resultParagraph = document.createElement("p");
+            resultParagraph.textContent = resultText;
+
+            var buttonsDiv = document.getElementById("buttons");
+            buttonsDiv.innerHTML = ""; // Clear the buttons
+            buttonsDiv.appendChild(resultParagraph);
+        }
+
+        function navigateToVideoPage() {
+            // Redirect to the video page
+            window.location.href = "video_page.html";
+        }
+
+        window.onload = animateTyping;
+    </script>
+
+</body>
+</html>
+
+
+

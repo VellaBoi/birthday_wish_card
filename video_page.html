@@ -1,0 +1,85 @@
+<!-- video_page.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Page</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background-color: black;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        video {
+            width: 80%;
+            max-width: 800px;
+        }
+
+        #controls {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 10px;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            width: 80%;
+            max-width: 800px;
+        }
+
+        button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: white;
+            font-size: 16px;
+        }
+
+        input[type="range"] {
+            width: 100px;
+        }
+    </style>
+</head>
+<body>
+
+    <video id="myVideo" controls>
+        <!-- Add the video source here -->
+        <source src="your_video.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <div id="controls">
+        <button id="playPauseBtn">Play</button>
+        <input type="range" id="volumeRange" min="0" max="1" step="0.1" value="1">
+    </div>
+
+    <script>
+        var video = document.getElementById("myVideo");
+        var playPauseBtn = document.getElementById("playPauseBtn");
+        var volumeRange = document.getElementById("volumeRange");
+
+        playPauseBtn.addEventListener("click", function() {
+            if (video.paused) {
+                video.play();
+                playPauseBtn.textContent = "Pause";
+            } else {
+                video.pause();
+                playPauseBtn.textContent = "Play";
+            }
+        });
+
+        volumeRange.addEventListener("input", function() {
+            video.volume = volumeRange.value;
+        });
+    </script>
+
+</body>
+</html>
